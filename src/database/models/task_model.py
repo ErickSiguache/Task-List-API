@@ -1,4 +1,4 @@
-""" Model class of the article table of the database"""
+""" Model class of the task table of the database"""
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship

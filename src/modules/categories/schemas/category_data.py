@@ -11,7 +11,6 @@ class ICategoryData(BaseModel):
     Attributes:
         name: The name of the category
         description: The description of the category
-        is_deleted: True if the category is deleted and False otherwise
 
     Args:
         BaseModel (_type_): The base model instance of Pydantic

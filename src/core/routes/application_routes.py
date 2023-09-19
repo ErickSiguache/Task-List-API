@@ -3,6 +3,7 @@ from typing import Final
 from fastapi import FastAPI
 from src.core.routes.health_routes import health_route
 from src.modules.categories.controllers.category_controller import category_route
+from src.modules.tasks.controllers.task_controller import task_route
 
 PREFIX_PATH: Final[str] = "/api/v1/"
 
@@ -17,3 +18,4 @@ def load_routes(app: FastAPI) -> None:
     """
     app.include_router(health_route, prefix="")
     app.include_router(category_route, prefix="")
+    app.include_router(task_route, prefix="")

@@ -59,8 +59,9 @@ class CategoryService:
         return category
 
     @use_db_session
-    def __get_category_by_id(self, category_id: int) -> Optional[ICategory]:
+    def get_category_by_id(self, category_id: int) -> Optional[ICategory]:
         """Returns a category if it exists"""
+        print("Si entro")
         return self.session.query(Category).filter(Category.id == category_id).first()
 
     @use_db_session
@@ -69,9 +70,7 @@ class CategoryService:
         Get a category by name of the category models and return
         the list of categories.
         """
-        category = (
-            self.session.query(Category).filter(Category.id == category_id).first()
-        )
+        category = self.get_category_by_id(category_id)
         if not category:
             set_http_error_404("Error: The category not exist")
         return category
@@ -132,7 +131,7 @@ class CategoryService:
             category was successfully or an exception if the category
             was not updated.
         """
-        if not self.__get_category_by_id(category.id):
+        if not self.get_category_by_id(category.id):
             return response_error_404("The category not exist")
 
         if self.__get_category_by_id_name(category.id, category.name):
@@ -156,7 +155,7 @@ class CategoryService:
             id (int): The identifier of the category
             status (int): The status of the category
         """
-        if not self.__get_category_by_id(id_cat):
+        if not self.get_category_by_id(id_cat):
             return response_error_404("The category not exist")
 
         status_category = (
